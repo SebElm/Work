@@ -1,0 +1,7 @@
+webform:
+  path: webform
+  defaults: {_controller: AppBundle:Default:index}
+
+disp:
+  path: disp
+  defaults: {_controller: AppBundle:Default:disp}

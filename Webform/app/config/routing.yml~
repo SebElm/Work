@@ -1,0 +1,3 @@
+webform:
+	path: /app/webform
+	defaults: {_controller: AppBundle:Default:index}
