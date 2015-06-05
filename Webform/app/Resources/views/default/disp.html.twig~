@@ -1,2 +1,10 @@
-Thanks, {{name}}, for providing your computer's data!<br>
-{{pcname}} with {{pccpu}}
+<table>
+    {% for item in form.users %}
+        {% set id = item.get('id') %}
+        <tr>
+            <td>{{ form_widget(item) }}</td>
+            <td>{{ users[id].name }}</td>
+            <td>{{ users[id].country }}</td>
+        </tr>
+    {% endfor %}
+</table>

@@ -3,7 +3,7 @@ webform:
   defaults: {_controller: AppBundle:Default:index}
 
 disp:
-  path: disp/{name}/{pc}
+  path: disp
   defaults: {_controller: AppBundle:Default:disp}
 
 disppc:

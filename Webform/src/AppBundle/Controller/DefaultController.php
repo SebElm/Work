@@ -11,6 +11,12 @@ use AppBundle\Form\PCType;
 
 class DefaultController extends Controller
 {
+    /**
+     * Generates a web form to enter the user data, transmits the data
+     * if valid and reroutes to the computer form
+     * @param Request $request request to work on after submission
+     * @return mixed either the rendered form or a rerouting request
+     */
     public function indexAction(Request $request)
     {
         // Create dummy user
@@ -27,9 +33,9 @@ class DefaultController extends Controller
             // Generate some id
             $user->setCustomerID(rand(0, 10));
             //Submit it to the underlying database
-            //$dbManager = $this->getDoctrine()->getManager();
-            //$dbManager->persist($user);
-            //$dbManager->flush();
+            $dbManager = $this->getDoctrine()->getManager();
+            $dbManager->persist($user);
+            $dbManager->flush();
 
             return $this->redirectToRoute('disppc', array('name' => $user->getName()));
         }
@@ -38,34 +44,49 @@ class DefaultController extends Controller
         return $this->render('default/user_form.html.twig', array('form' => $form->createView ()));
     }
 
+    /**
+     * Displays the a form to enter the computers data,
+     * using the given name as dynamic variable
+     * @param Request $request the request to work on after submission
+     * @param $name The name to display as the user's name
+     * @return mixed either the rendered form or a rerouting request
+     */
     public function disppcAction(Request $request, $name)
     {
+        // Create a dummy computer
         $pc = new Computer();
         $pc->setName('GamerPC');
         $pc->setCpu('Intel Core i7 4770K');
         $pc->setFrequency(3.4);
+        $pc->setHarddisk(2222);
 
+        // Create the form
         $form = $this->createForm(new PCType(), $pc);
 
+        // Check whether the data is valid
         $form->handleRequest($request);
         if($form->isValid())
         {
-            return $this->redirectToRoute('disp', array('name' => $name, 'pc' => $pc));
+            // Store the entry
+            $dbManager = $this->getDoctrine()->getManager();
+            $dbManager->persist($pc);
+            $dbManager->flush();
+            // Reroute to final success page
+            return $this->redirectToRoute('disp');
         }
 
+        // Return the rendered form
         return $this->render('default/disppc.html.twig', array('name' => $name, 'form' => $form->createView ()));
     }
 
-    public function dispAction($name, $pc)
+    /**
+     * Simply displays a success message
+     * @return mixed the rendered page
+     */
+    public function dispAction()
     {
-        $pc = explode('_', $pc);
-        $computer = new PCType();
-        $computer->name = $pc[0];
-        $computer->cpu = $pc[1];
-        $computer->frequency = $pc[2];
-        $computer->harddisk = $pc[3];
-
-        return $this->render('default/disp.html.twig', array('name' => $name, 'pcname' => $computer->name, 'pccpu' => $computer->cpu));
+        // Return the rendered webpage
+        return $this->render('default/disp.html.twig');
     }
 }
 ?>
