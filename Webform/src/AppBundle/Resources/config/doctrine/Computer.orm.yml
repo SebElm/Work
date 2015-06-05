@@ -1,0 +1,20 @@
+AppBundle\Entity\Computer:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: text
+            column: 'name'
+        cpu:
+            type: text
+        frequency:
+            type: float
+        harddisk:
+            type: integer
+    lifecycleCallbacks: {  }

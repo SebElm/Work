@@ -1,1 +1,2 @@
-Registration successful!
+Thanks, {{name}}, for providing your computer's data!<br>
+{{pcname}} with {{pccpu}}

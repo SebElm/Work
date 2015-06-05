@@ -3,5 +3,9 @@ webform:
   defaults: {_controller: AppBundle:Default:index}
 
 disp:
-  path: disp
+  path: disp/{name}/{pc}
   defaults: {_controller: AppBundle:Default:disp}
+
+disppc:
+  path: pcform/{name}
+  defaults: {_controller: AppBundle:Default:disppc}

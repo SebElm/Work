@@ -1,0 +1,18 @@
+AppBundle\Entity\User:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: text
+            column: 'name'
+        customerID:
+            type: integer
+        country:
+            type: text
+    lifecycleCallbacks: {  }

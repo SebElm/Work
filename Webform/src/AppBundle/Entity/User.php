@@ -6,6 +6,11 @@
         protected $name;
         protected $country;
         protected $customerID;
+        protected $id;
+
+        public function getId (){
+            return $this->id;
+        }
 
         public function getName()
         {
@@ -27,12 +32,12 @@
             $this->country = $country;
         }
 
-        public function getCustomerID()
+        public function getCustomerId()
         {
             return $this->customerID;
         }
 
-        public function setCustomerID($customerID)
+        public function setCustomerId($customerID)
         {
             $this->customerID = $customerID;
         }

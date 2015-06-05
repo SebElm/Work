@@ -1,4 +1,4 @@
-Hi! Please enter your name data to start:
+Welcome! Please enter your name data to start:
 {{ form_start(form) }}
     {{ form_errors(form) }}
 {{ form_widget(form) }}
